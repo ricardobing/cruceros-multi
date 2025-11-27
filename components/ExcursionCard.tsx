@@ -1,10 +1,15 @@
 'use client';
 
+import type { Prisma } from '@prisma/client';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+type ExcursionWithRelations = Prisma.ExcursionGetPayload<{
+  include: { destination: true; departures: { include: { cruiseShip: true } } };
+}>;
+
 interface ExcursionCardProps {
-  excursion: any;
+  excursion: ExcursionWithRelations;
   locale: string;
 }
 
@@ -54,7 +59,7 @@ export default function ExcursionCard({ excursion, locale }: ExcursionCardProps)
         </p>
 
         {firstDeparture && (
-          <div className="flex items-center justify-between mb-4 text-sm">
+          <div className="mb-4 space-y-2 text-sm">
             <div className="flex items-center gap-2">
               <svg
                 className="w-4 h-4 text-gray-500"
@@ -73,6 +78,10 @@ export default function ExcursionCard({ excursion, locale }: ExcursionCardProps)
                 {firstDeparture.currentParticipants}/{firstDeparture.maxParticipants}{' '}
                 {t('participants')}
               </span>
+            </div>
+
+            <div className="text-gray-500">
+              {t('shipLabel')}: {firstDeparture.cruiseShip?.name ?? t('shipFallback')}
             </div>
 
             <span

@@ -1,12 +1,104 @@
-import { useTranslations } from 'next-intl';
 import SearchForm from '@/components/SearchForm';
+import { getTranslations } from 'next-intl/server';
 
-export default async function HomePage({
-  params,
-}: {
+interface HomePageProps {
   params: Promise<{ locale: string }>;
-}) {
+}
+
+export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
-  const t = useTranslations('home');
-  return ( <div> <div className="relative h-[500px] bg-gradient-to-br from-ocean-blue to-ocean-dark flex items-center justify-center text-white"> <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920')] bg-cover bg-center opacity-30" /> <div className="relative z-10 text-center px-4"> <h1 className="text-5xl font-bold mb-4">{t('title')}</h1> <p className="text-xl mb-8">{t('subtitle')}</p> </div> </div> <div className="container mx-auto px-4 -mt-16 relative z-20"> <SearchForm /> </div> <div className="container mx-auto px-4 py-16"> <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> <div className="text-center"> <div className="w-16 h-16 mx-auto mb-4 bg-coral rounded-full flex items-center justify-center"> <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> </svg> </div> <h3 className="text-xl font-semibold mb-2">Easy Search</h3> <p className="text-gray-600">Find perfect excursions for your cruise destination</p> </div> <div className="text-center"> <div className="w-16 h-16 mx-auto mb-4 bg-coral rounded-full flex items-center justify-center"> <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /> </svg> </div> <h3 className="text-xl font-semibold mb-2">Flexible Booking</h3> <p className="text-gray-600">Reserve your spot and confirm automatically</p> </div> <div className="text-center"> <div className="w-16 h-16 mx-auto mb-4 bg-coral rounded-full flex items-center justify-center"> <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /> </svg> </div> <h3 className="text-xl font-semibold mb-2">Verified Tours</h3> <p className="text-gray-600">All excursions are carefully vetted and reviewed</p> </div> </div> </div> </div> );
+  const t = await getTranslations({ locale, namespace: 'home' });
+
+  const features = [
+    {
+      key: 'easySearch',
+      title: t('features.easySearch.title'),
+      description: t('features.easySearch.description'),
+      icon: (
+        <svg
+          className="h-8 w-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      ),
+    },
+    {
+      key: 'flexibleBooking',
+      title: t('features.flexibleBooking.title'),
+      description: t('features.flexibleBooking.description'),
+      icon: (
+        <svg
+          className="h-8 w-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+      ),
+    },
+    {
+      key: 'verifiedTours',
+      title: t('features.verifiedTours.title'),
+      description: t('features.verifiedTours.description'),
+      icon: (
+        <svg
+          className="h-8 w-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <div>
+      <div className="relative flex h-[500px] items-center justify-center bg-gradient-to-br from-ocean-blue to-ocean-dark text-white">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920')] bg-cover bg-center opacity-30" />
+        <div className="relative z-10 px-4 text-center">
+          <h1 className="mb-4 text-5xl font-bold">{t('title')}</h1>
+          <p className="text-xl">{t('subtitle')}</p>
+        </div>
+      </div>
+
+      <div className="container relative z-20 -mt-16 mx-auto px-4">
+        <SearchForm />
+      </div>
+
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {features.map((feature) => (
+            <div key={feature.key} className="text-center">
+              <div className="bg-coral mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                {feature.icon}
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
+              <p className="text-gray-600">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }

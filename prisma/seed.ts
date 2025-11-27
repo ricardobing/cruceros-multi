@@ -3,51 +3,30 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌊 Starting seed...');
+  console.info('Starting seed...');
 
-  // Clear existing data
   await prisma.reservation.deleteMany();
   await prisma.departure.deleteMany();
   await prisma.excursion.deleteMany();
   await prisma.destination.deleteMany();
   await prisma.cruiseShip.deleteMany();
 
-  // Create Cruise Ships
   const ships = await Promise.all([
-    prisma.cruiseShip.create({
-      data: { name: 'Ocean Explorer' },
-    }),
-    prisma.cruiseShip.create({
-      data: { name: 'Caribbean Dream' },
-    }),
-    prisma.cruiseShip.create({
-      data: { name: 'Pacific Voyager' },
-    }),
+    prisma.cruiseShip.create({ data: { name: 'Ocean Explorer' } }),
+    prisma.cruiseShip.create({ data: { name: 'Caribbean Dream' } }),
+    prisma.cruiseShip.create({ data: { name: 'Pacific Voyager' } }),
   ]);
+  console.info(`Created ${ships.length} cruise ships`);
 
-  console.log(`✅ Created ${ships.length} cruise ships`);
-
-  // Create Destinations
   const destinations = await Promise.all([
-    prisma.destination.create({
-      data: { name: 'Cozumel, Mexico' },
-    }),
-    prisma.destination.create({
-      data: { name: 'Grand Cayman' },
-    }),
-    prisma.destination.create({
-      data: { name: 'Nassau, Bahamas' },
-    }),
-    prisma.destination.create({
-      data: { name: 'St. Thomas' },
-    }),
+    prisma.destination.create({ data: { name: 'Cozumel, Mexico' } }),
+    prisma.destination.create({ data: { name: 'Grand Cayman' } }),
+    prisma.destination.create({ data: { name: 'Nassau, Bahamas' } }),
+    prisma.destination.create({ data: { name: 'St. Thomas' } }),
   ]);
+  console.info(`Created ${destinations.length} destinations`);
 
-  console.log(`✅ Created ${destinations.length} destinations`);
-
-  // Create Excursions
   const excursions = await Promise.all([
-    // Cozumel
     prisma.excursion.create({
       data: {
         title: 'Snorkeling Paradise',
@@ -64,7 +43,6 @@ async function main() {
         destinationId: destinations[0].id,
       },
     }),
-    // Grand Cayman
     prisma.excursion.create({
       data: {
         title: 'Stingray City Adventure',
@@ -77,11 +55,10 @@ async function main() {
       data: {
         title: 'Seven Mile Beach Escape',
         description:
-          'Relax on one of the Caribbean\'s most beautiful beaches. Enjoy crystal-clear waters, soft white sand, and complimentary beach chairs and umbrellas.',
+          "Relax on one of the Caribbean's most beautiful beaches. Enjoy crystal-clear waters, soft white sand, and complimentary beach chairs and umbrellas.",
         destinationId: destinations[1].id,
       },
     }),
-    // Nassau
     prisma.excursion.create({
       data: {
         title: 'Atlantis Aquaventure',
@@ -94,11 +71,10 @@ async function main() {
       data: {
         title: 'Island Jeep Safari',
         description:
-          'Explore Nassau\'s hidden gems in an open-air jeep. Visit local beaches, historical sites, and enjoy authentic Bahamian cuisine.',
+          "Explore Nassau's hidden gems in an open-air jeep. Visit local beaches, historical sites, and enjoy authentic Bahamian cuisine.",
         destinationId: destinations[2].id,
       },
     }),
-    // St. Thomas
     prisma.excursion.create({
       data: {
         title: 'Mountain Top Scenic Tour',
@@ -116,41 +92,53 @@ async function main() {
       },
     }),
   ]);
+  console.info(`Created ${excursions.length} excursions`);
 
-  console.log(`✅ Created ${excursions.length} excursions`);
-
-  // Create Departures (multiple dates for each excursion)
+  let departureCount = 0;
   const today = new Date();
-  const departures = [];
 
-  for (const excursion of excursions) {
-    for (let i = 0; i < 4; i++) {
-      const departureDate = new Date(today);
-      departureDate.setDate(today.getDate() + 7 + i * 7); // Next 4 weeks
+  for (const [index, excursion] of excursions.entries()) {
+    for (let week = 0; week < 4; week++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + 7 + week * 7 + index);
 
-      const departure = await prisma.departure.create({
+      const ship = ships[(index + week) % ships.length];
+      const currentParticipants = (() => {
+        if (week === 0) return 3;
+        if (week === 1) return 5;
+        if (week === 2) return 12;
+        return 20;
+      })();
+      const status =
+        currentParticipants >= 20
+          ? 'full'
+          : currentParticipants >= 4
+          ? 'confirmed'
+          : 'pending';
+
+      await prisma.departure.create({
         data: {
           excursionId: excursion.id,
-          date: departureDate,
+          cruiseShipId: ship.id,
+          date,
           minParticipants: 4,
           maxParticipants: 20,
-          currentParticipants: i === 0 ? 3 : i === 1 ? 5 : 0, // Some with participants
-          status: i === 1 ? 'confirmed' : 'pending',
+          currentParticipants,
+          status,
         },
       });
 
-      departures.push(departure);
+      departureCount += 1;
     }
   }
 
-  console.log(`✅ Created ${departures.length} departures`);
-
-  console.log('🎉 Seed completed successfully!');
+  console.info(`Created ${departureCount} departures`);
+  console.info('Seed completed successfully!');
 }
 
 main()
-  .catch((e) => {
-    console.error('❌ Seed error:', e);
+  .catch((error) => {
+    console.error('Seed error:', error);
     process.exit(1);
   })
   .finally(async () => {

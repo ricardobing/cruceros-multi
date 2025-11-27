@@ -1,64 +1,88 @@
 {
   "home": {
-    "title": "Descubre Increíbles Excursiones de Crucero",
-    "subtitle": "Reserva experiencias inolvidables en cada destino",
+    "title": "Descubrí increíbles excursiones de crucero",
+    "subtitle": "Reservá experiencias inolvidables en cada destino",
+    "features": {
+      "easySearch": {
+        "title": "Búsqueda sencilla",
+        "description": "Encontrá la excursión ideal para tu barco o destino."
+      },
+      "flexibleBooking": {
+        "title": "Reserva flexible",
+        "description": "Reservá tu lugar y confirmá automáticamente cuando esté listo."
+      },
+      "verifiedTours": {
+        "title": "Tours verificados",
+        "description": "Cada experiencia está evaluada por seguridad y calidad."
+      }
+    },
     "search": {
-      "ship": "Barco Crucero",
+      "ship": "Barco crucero",
       "destination": "Destino",
       "date": "Fecha",
-      "button": "Buscar Excursiones",
-      "allShips": "Todos los Barcos",
-      "allDestinations": "Todos los Destinos"
+      "button": "Buscar excursiones",
+      "allShips": "Todos los barcos",
+      "allDestinations": "Todos los destinos"
     }
   },
   "excursions": {
-    "title": "Excursiones Disponibles",
-    "noResults": "No se encontraron excursiones",
+    "title": "Excursiones disponibles",
+    "backLink": "Volver a la búsqueda",
+    "noResults": "No se encontraron excursiones para tu filtro.",
     "participants": "participantes",
     "minRequired": "Mín. requeridos",
     "spotsLeft": "lugares disponibles",
     "confirmed": "Confirmada",
     "pending": "Pendiente de confirmación",
-    "viewDetails": "Ver Detalles"
+    "viewDetails": "Ver detalles",
+    "shipLabel": "Barco",
+    "shipFallback": "A asignar"
   },
   "detail": {
-    "backToList": "Volver a Excursiones",
+    "backToList": "Volver a excursiones",
     "description": "Descripción",
-    "availableDates": "Fechas Disponibles",
+    "availableDates": "Fechas disponibles",
     "participants": "participantes",
     "spotsLeft": "lugares disponibles",
     "confirmed": "Confirmada",
     "pending": "Pendiente",
     "full": "Completa",
-    "prereserve": "Pre-Reservar",
+    "noDates": "No hay fechas próximas disponibles",
+    "shipLabel": "Barco",
+    "shipFallback": "A asignar",
     "reserveForm": {
-      "title": "Completa tu reserva",
-      "name": "Nombre Completo",
-      "email": "Correo Electrónico",
-      "submit": "Confirmar Reserva",
-      "submitting": "Procesando..."
+      "title": "Completá tu reserva",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "submit": "Confirmar reserva",
+      "submitting": "Procesando...",
+      "selectDeparture": "Seleccioná una fecha antes de continuar",
+      "error": "No pudimos crear la reserva. Intentalo nuevamente."
     }
   },
   "thankyou": {
     "title": "¡Gracias!",
-    "subtitle": "Tu reserva ha sido recibida",
+    "subtitle": "Recibimos tu reserva correctamente",
     "pending": {
-      "title": "Pendiente de Confirmación",
-      "description": "Tu reserva está pendiente. Te enviaremos un correo de confirmación una vez alcancemos el número mínimo de participantes."
+      "title": "Pendiente de confirmación",
+      "description": "Tu reserva está pendiente. Te avisaremos por correo cuando alcancemos el mínimo de participantes."
     },
     "confirmed": {
       "title": "¡Confirmada!",
-      "description": "¡Excelentes noticias! Tu excursión está confirmada. Recibirás un correo de confirmación en breve con todos los detalles."
+      "description": "¡Excelente! Tu excursión está confirmada. Te enviaremos los detalles por correo en breve."
     },
-    "reservationDetails": "Detalles de la Reserva",
+    "reservationDetails": "Detalles de la reserva",
     "excursion": "Excursión",
     "date": "Fecha",
+    "ship": "Barco",
+    "shipFallback": "A confirmar",
     "status": "Estado",
-    "backHome": "Volver al Inicio"
+    "backHome": "Volver al inicio"
   },
   "nav": {
     "home": "Inicio",
-    "language": "Idioma"
+    "language": "Idioma",
+    "brand": "Excursiones de crucero"
   },
   "status": {
     "pending": "Pendiente",

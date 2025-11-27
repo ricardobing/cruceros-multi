@@ -2,6 +2,20 @@
   "home": {
     "title": "Discover Amazing Cruise Excursions",
     "subtitle": "Book unforgettable experiences at every destination",
+    "features": {
+      "easySearch": {
+        "title": "Easy Search",
+        "description": "Find the perfect excursion for any ship or destination."
+      },
+      "flexibleBooking": {
+        "title": "Flexible Booking",
+        "description": "Reserve your spot now and confirm automatically when ready."
+      },
+      "verifiedTours": {
+        "title": "Verified Tours",
+        "description": "Every tour is vetted for safety, reliability, and quality."
+      }
+    },
     "search": {
       "ship": "Cruise Ship",
       "destination": "Destination",
@@ -13,13 +27,16 @@
   },
   "excursions": {
     "title": "Available Excursions",
-    "noResults": "No excursions found",
+    "backLink": "Back to search",
+    "noResults": "No excursions found for your filters.",
     "participants": "participants",
     "minRequired": "Min. required",
     "spotsLeft": "spots left",
     "confirmed": "Confirmed",
     "pending": "Pending confirmation",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "shipLabel": "Ship",
+    "shipFallback": "To be assigned"
   },
   "detail": {
     "backToList": "Back to Excursions",
@@ -30,13 +47,17 @@
     "confirmed": "Confirmed",
     "pending": "Pending",
     "full": "Full",
-    "prereserve": "Pre-Reserve",
+    "noDates": "No upcoming dates available",
+    "shipLabel": "Ship",
+    "shipFallback": "To be assigned",
     "reserveForm": {
       "title": "Complete your reservation",
       "name": "Full Name",
       "email": "Email",
       "submit": "Confirm Reservation",
-      "submitting": "Processing..."
+      "submitting": "Processing...",
+      "selectDeparture": "Please select a departure date",
+      "error": "We couldn't create the reservation. Please try again."
     }
   },
   "thankyou": {
@@ -53,12 +74,15 @@
     "reservationDetails": "Reservation Details",
     "excursion": "Excursion",
     "date": "Date",
+    "ship": "Ship",
+    "shipFallback": "To be assigned",
     "status": "Status",
     "backHome": "Back to Home"
   },
   "nav": {
     "home": "Home",
-    "language": "Language"
+    "language": "Language",
+    "brand": "Cruise Excursions"
   },
   "status": {
     "pending": "Pending",

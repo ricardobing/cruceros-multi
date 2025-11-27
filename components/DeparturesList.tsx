@@ -1,20 +1,24 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+
+type Departure = {
+  id: string;
+  date: string | Date;
+  currentParticipants: number;
+  maxParticipants: number;
+  status: string;
+  cruiseShip?: { name: string } | null;
+};
 
 interface DeparturesListProps {
-  departures: any[];
-  excursionId: string;
+  departures: Departure[];
   locale: string;
 }
 
-export default function DeparturesList({
-  departures,
-  excursionId,
-  locale,
-}: DeparturesListProps) {
+export default function DeparturesList({ departures, locale }: DeparturesListProps) {
   const t = useTranslations('detail');
   const router = useRouter();
   const [selectedDeparture, setSelectedDeparture] = useState<string | null>(null);
@@ -23,7 +27,10 @@ export default function DeparturesList({
 
   const handleReserve = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedDeparture) return;
+    if (!selectedDeparture) {
+      alert(t('reserveForm.selectDeparture'));
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -37,85 +44,105 @@ export default function DeparturesList({
         }),
       });
 
-      if (response.ok) {
-        const reservation = await response.json();
-        router.push(`/${locale}/thank-you?reservation=${reservation.id}`);
-      } else {
-        alert('Error creating reservation');
+      if (!response.ok) {
+        throw new Error('Reservation failed');
       }
+
+      const reservation = await response.json();
+      router.push(`/${locale}/thank-you?reservation=${reservation.id}`);
     } catch (error) {
       console.error('Reservation error:', error);
-      alert('Error creating reservation');
+      alert(t('reserveForm.error'));
     } finally {
       setIsSubmitting(false);
     }
   };
 
   if (departures.length === 0) {
-    return (
-      <p className="text-gray-600 text-center py-4">No dates available</p>
-    );
+    return <p className="py-4 text-center text-gray-600">{t('noDates')}</p>;
   }
 
   return (
     <div className="space-y-4">
-      {departures.map((departure) => (
-        <div
-          key={departure.id}
-          className={`border rounded-lg p-4 cursor-pointer transition-colors ${
-            selectedDeparture === departure.id
-              ? 'border-ocean-blue bg-ocean-blue/5'
-              : 'border-gray-200 hover:border-ocean-blue'
-          }`}
-          onClick={() => setSelectedDeparture(departure.id)}
-        >
-          <div className="flex justify-between items-start mb-2">
-            <div>
-              <p className="font-semibold">
-                {new Date(departure.date).toLocaleDateString(locale, {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
-              <p className="text-sm text-gray-600">
-                {departure.currentParticipants}/{departure.maxParticipants}{' '}
-                {t('participants')}
-              </p>
-            </div>
-            <span
-              className={`px-2 py-1 rounded text-xs font-semibold ${
-                departure.status === 'confirmed'
-                  ? 'bg-green-100 text-green-800'
-                  : departure.status === 'full'
-                  ? 'bg-red-100 text-red-800'
-                  : 'bg-yellow-100 text-yellow-800'
-              }`}
-            >
-              {departure.status === 'confirmed'
-                ? t('confirmed')
-                : departure.status === 'full'
-                ? t('full')
-                : t('pending')}
-            </span>
-          </div>
+      {departures.map((departure) => {
+        const isFull = departure.status === 'full';
+        const isSelected = selectedDeparture === departure.id;
 
-          {departure.status !== 'full' && (
-            <div className="text-sm text-gray-600">
-              {departure.maxParticipants - departure.currentParticipants}{' '}
-              {t('spotsLeft')}
+        return (
+          <div
+            key={departure.id}
+            role="button"
+            tabIndex={0}
+            aria-disabled={isFull}
+            className={`rounded-lg border p-4 transition-colors ${
+              isFull
+                ? 'cursor-not-allowed border-gray-200 bg-gray-50 opacity-60'
+                : isSelected
+                ? 'border-ocean-blue bg-ocean-blue/5'
+                : 'cursor-pointer border-gray-200 hover:border-ocean-blue'
+            }`}
+            onClick={() => {
+              if (!isFull) {
+                setSelectedDeparture(departure.id);
+              }
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !isFull) {
+                setSelectedDeparture(departure.id);
+              }
+            }}
+          >
+            <div className="mb-2 flex items-start justify-between">
+              <div>
+                <p className="font-semibold">
+                  {new Date(departure.date).toLocaleDateString(locale, {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </p>
+                <p className="text-sm text-gray-600">
+                  {departure.currentParticipants}/{departure.maxParticipants}{' '}
+                  {t('participants')}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {t('shipLabel')}: {departure.cruiseShip?.name ?? t('shipFallback')}
+                </p>
+              </div>
+              <span
+                className={`px-2 py-1 text-xs font-semibold ${
+                  departure.status === 'confirmed'
+                    ? 'bg-green-100 text-green-800'
+                    : isFull
+                    ? 'bg-red-100 text-red-800'
+                    : 'bg-yellow-100 text-yellow-800'
+                }`}
+              >
+                {departure.status === 'confirmed'
+                  ? t('confirmed')
+                  : isFull
+                  ? t('full')
+                  : t('pending')}
+              </span>
             </div>
-          )}
-        </div>
-      ))}
+
+            {!isFull && (
+              <div className="text-sm text-gray-600">
+                {departure.maxParticipants - departure.currentParticipants}{' '}
+                {t('spotsLeft')}
+              </div>
+            )}
+          </div>
+        );
+      })}
 
       {selectedDeparture && (
-        <form onSubmit={handleReserve} className="mt-6 pt-6 border-t">
-          <h3 className="font-semibold mb-4">{t('reserveForm.title')}</h3>
+        <form onSubmit={handleReserve} className="mt-6 border-t pt-6">
+          <h3 className="mb-4 font-semibold">{t('reserveForm.title')}</h3>
 
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="mb-2 block text-sm font-medium text-gray-700">
                 {t('reserveForm.name')}
               </label>
               <input
@@ -130,7 +157,7 @@ export default function DeparturesList({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="mb-2 block text-sm font-medium text-gray-700">
                 {t('reserveForm.email')}
               </label>
               <input
