@@ -18,87 +18,73 @@ export default function ExcursionCard({ excursion, locale }: ExcursionCardProps)
   const firstDeparture = excursion.departures[0];
 
   return (
-    <div className="card">
+    <div className="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-1">
       <div
-        className="h-48 bg-cover bg-center"
+        className="h-56 bg-cover bg-center relative"
         style={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600)',
+          backgroundImage: `url(${excursion.imageUrl || 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80'})`,
         }}
-      />
-      <div className="p-6">
-        <div className="flex items-center gap-2 text-ocean-blue mb-2">
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-          <span className="text-sm font-medium">{excursion.destination.name}</span>
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+        <div className="absolute bottom-3 left-3 right-3">
+          <div className="flex items-center gap-2 text-white">
+            <svg
+              className="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <span className="text-sm font-semibold drop-shadow-lg">
+              {excursion.destination.name}
+            </span>
+          </div>
         </div>
-
-        <h3 className="text-xl font-semibold text-gray-900 mb-3">
+      </div>
+      <div className="p-5">
+        <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2 leading-snug">
           {excursion.title}
         </h3>
 
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
           {excursion.description}
         </p>
 
         {firstDeparture && (
-          <div className="mb-4 space-y-2 text-sm">
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-4 h-4 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div className="mb-4 space-y-3 pt-3 border-t border-gray-100">
+            <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center gap-2 text-gray-700">
+                <svg
+                  className="w-4 h-4 text-ocean-blue"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                </svg>
+                <span className="font-medium">
+                  {firstDeparture.currentParticipants}/{firstDeparture.maxParticipants} {t('participants')}
+                </span>
+              </div>
+              <span
+                className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
+                  firstDeparture.status === 'confirmed'
+                    ? 'bg-emerald-100 text-emerald-700'
+                    : 'bg-amber-100 text-amber-700'
+                }`}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                />
-              </svg>
-              <span>
-                {firstDeparture.currentParticipants}/{firstDeparture.maxParticipants}{' '}
-                {t('participants')}
+                {firstDeparture.status === 'confirmed' ? t('confirmed') : t('pending')}
               </span>
             </div>
-
-            <div className="text-gray-500">
-              {t('shipLabel')}: {firstDeparture.cruiseShip?.name ?? t('shipFallback')}
-            </div>
-
-            <span
-              className={`px-2 py-1 rounded text-xs font-semibold ${
-                firstDeparture.status === 'confirmed'
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-yellow-100 text-yellow-800'
-              }`}
-            >
-              {firstDeparture.status === 'confirmed' ? t('confirmed') : t('pending')}
-            </span>
           </div>
         )}
 
         <Link
           href={`/${locale}/excursions/${excursion.id}`}
-          className="btn-primary w-full block text-center"
+          className="block w-full bg-gradient-to-r from-ocean-blue to-ocean-light text-white text-center py-3 px-4 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105"
         >
           {t('viewDetails')}
         </Link>

@@ -1,102 +1,102 @@
 ﻿{
-    "home":  {
-                 "title":  "DescubrÃ­ increÃ­bles excursiones de crucero",
-                 "subtitle":  "ReservÃ¡ experiencias inolvidables en cada destino",
-                 "features":  {
-                                  "easySearch":  {
-                                                     "title":  "BÃºsqueda sencilla",
-                                                     "description":  "EncontrÃ¡ la excursiÃ³n ideal para tu barco o destino."
-                                                 },
-                                  "flexibleBooking":  {
-                                                          "title":  "Reserva flexible",
-                                                          "description":  "ReservÃ¡ tu lugar y confirmÃ¡ automÃ¡ticamente cuando estÃ© listo."
-                                                      },
-                                  "verifiedTours":  {
-                                                        "title":  "Tours verificados",
-                                                        "description":  "Cada experiencia estÃ¡ evaluada por seguridad y calidad."
-                                                    }
-                              },
-                 "search":  {
-                                "ship":  "Barco crucero",
-                                "destination":  "Destino",
-                                "date":  "Fecha",
-                                "button":  "Buscar excursiones",
-                                "allShips":  "Todos los barcos",
-                                "allDestinations":  "Todos los destinos"
-                            }
-             },
-    "excursions":  {
-                       "title":  "Excursiones disponibles",
-                       "backLink":  "Volver a la bÃºsqueda",
-                       "noResults":  "No se encontraron excursiones para tu filtro.",
-                       "participants":  "participantes",
-                       "minRequired":  "MÃ­n. requeridos",
-                       "spotsLeft":  "lugares disponibles",
-                       "confirmed":  "Confirmada",
-                       "pending":  "Pendiente de confirmaciÃ³n",
-                       "viewDetails":  "Ver detalles",
-                       "shipLabel":  "Barco",
-                       "shipFallback":  "A asignar"
-                   },
-    "detail":  {
-                   "backToList":  "Volver a excursiones",
-                   "description":  "DescripciÃ³n",
-                   "availableDates":  "Fechas disponibles",
-                   "participants":  "participantes",
-                   "spotsLeft":  "lugares disponibles",
-                   "confirmed":  "Confirmada",
-                   "pending":  "Pendiente",
-                   "full":  "Completa",
-                   "noDates":  "No hay fechas prÃ³ximas disponibles",
-                   "shipLabel":  "Barco",
-                   "shipFallback":  "A asignar",
-                   "reserveForm":  {
-                                       "title":  "CompletÃ¡ tu reserva",
-                                       "name":  "Nombre completo",
-                                       "email":  "Correo electrÃ³nico",
-                                       "submit":  "Confirmar reserva",
-                                       "submitting":  "Procesando...",
-                                       "selectDeparture":  "SeleccionÃ¡ una fecha antes de continuar",
-                                       "error":  "No pudimos crear la reserva. Intentalo nuevamente."
-                                   }
-               },
-    "thankyou":  {
-                     "title":  "Â¡Gracias!",
-                     "subtitle":  "Recibimos tu reserva correctamente",
-                     "pending":  {
-                                     "title":  "Pendiente de confirmaciÃ³n",
-                                     "description":  "Tu reserva estÃ¡ pendiente. Te avisaremos por correo cuando alcancemos el mÃ­nimo de participantes."
-                                 },
-                     "confirmed":  {
-                                       "title":  "Â¡Confirmada!",
-                                       "description":  "Â¡Excelente! Tu excursiÃ³n estÃ¡ confirmada. Te enviaremos los detalles por correo en breve."
-                                   },
-                     "reservationDetails":  "Detalles de la reserva",
-                     "excursion":  "ExcursiÃ³n",
-                     "date":  "Fecha",
-                     "ship":  "Barco",
-                     "shipFallback":  "A confirmar",
-                     "status":  "Estado",
-                     "backHome":  "Volver al inicio"
-                 },
-    "nav":  {
-                "home":  "Inicio",
-                "language":  "Idioma",
-                "brand":  "Excursiones de crucero"
-            },
-    "status":  {
-                   "pending":  "Pendiente",
-                   "confirmed":  "Confirmada"
-               },
-    "footer":  {
-                   "about":  "Acerca de",
-                   "description":  "Descubrí increíbles experiencias en cada destino",
-                   "home":  "Inicio",
-                   "destinations":  "Destinos",
-                   "excursions":  "Excursiones",
-                   "contact":  "Contacto",
-                   "brand":  "Excursiones de crucero",
-                   "quickLinks":  "Enlaces rápidos",
-                   "rights":  "Todos los derechos reservados"
-               }
+  "home": {
+    "title": "Descubrí increíbles excursiones de crucero",
+    "subtitle": "Reservá experiencias inolvidables en cada destino",
+    "features": {
+      "easySearch": {
+        "title": "Búsqueda sencilla",
+        "description": "Encontrá la excursión ideal para tu barco o destino."
+      },
+      "flexibleBooking": {
+        "title": "Reserva flexible",
+        "description": "Reservá tu lugar y confirmá automáticamente cuando esté listo."
+      },
+      "verifiedTours": {
+        "title": "Tours verificados",
+        "description": "Cada experiencia está evaluada por seguridad y calidad."
+      }
+    },
+    "search": {
+      "ship": "Barco crucero",
+      "destination": "Destino",
+      "date": "Fecha",
+      "button": "Buscar excursiones",
+      "allShips": "Todos los barcos",
+      "allDestinations": "Todos los destinos"
+    }
+  },
+  "excursions": {
+    "title": "Excursiones disponibles",
+    "backLink": "Volver a la búsqueda",
+    "noResults": "No se encontraron excursiones para tu filtro.",
+    "participants": "participantes",
+    "minRequired": "Mín. requeridos",
+    "spotsLeft": "lugares disponibles",
+    "confirmed": "Confirmada",
+    "pending": "Pendiente de confirmación",
+    "viewDetails": "Ver detalles",
+    "shipLabel": "Barco",
+    "shipFallback": "A asignar"
+  },
+  "detail": {
+    "backToList": "Volver a excursiones",
+    "description": "Descripción",
+    "availableDates": "Fechas disponibles",
+    "participants": "participantes",
+    "spotsLeft": "lugares disponibles",
+    "confirmed": "Confirmada",
+    "pending": "Pendiente",
+    "full": "Completa",
+    "noDates": "No hay fechas próximas disponibles",
+    "shipLabel": "Barco",
+    "shipFallback": "A asignar",
+    "reserveForm": {
+      "title": "Completá tu reserva",
+      "name": "Nombre completo",
+      "email": "Correo electrónico",
+      "submit": "Confirmar reserva",
+      "submitting": "Procesando...",
+      "selectDeparture": "Seleccioná una fecha antes de continuar",
+      "error": "No pudimos crear la reserva. Intentalo nuevamente."
+    }
+  },
+  "thankyou": {
+    "title": "¡Gracias!",
+    "subtitle": "Recibimos tu reserva correctamente",
+    "pending": {
+      "title": "Pendiente de confirmación",
+      "description": "Tu reserva está pendiente. Te avisaremos por correo cuando alcancemos el mínimo de participantes."
+    },
+    "confirmed": {
+      "title": "¡Confirmada!",
+      "description": "¡Excelente! Tu excursión está confirmada. Te enviaremos los detalles por correo en breve."
+    },
+    "reservationDetails": "Detalles de la reserva",
+    "excursion": "Excursión",
+    "date": "Fecha",
+    "ship": "Barco",
+    "shipFallback": "A confirmar",
+    "status": "Estado",
+    "backHome": "Volver al inicio"
+  },
+  "nav": {
+    "home": "Inicio",
+    "language": "Idioma",
+    "brand": "Excursiones de crucero"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "confirmed": "Confirmada"
+  },
+  "footer": {
+    "brand": "Excursiones de crucero",
+    "description": "Descubrí increíbles experiencias en cada destino",
+    "quickLinks": "Enlaces rápidos",
+    "home": "Inicio",
+    "excursions": "Excursiones",
+    "about": "Acerca de",
+    "destinations": "Destinos",
+    "contact": "Contacto",
+    "rights": "Todos los derechos reservados"
+  }
 }

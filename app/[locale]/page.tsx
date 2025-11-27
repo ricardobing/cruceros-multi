@@ -98,27 +98,30 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <div>
-      <div className="relative flex h-[500px] items-center justify-center bg-gradient-to-br from-ocean-blue to-ocean-dark text-white">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920')] bg-cover bg-center opacity-30" />
-        <div className="relative z-10 px-4 text-center">
-          <h1 className="mb-4 text-5xl font-bold">{t('title')}</h1>
-          <p className="text-xl">{t('subtitle')}</p>
+      <div className="relative flex h-[600px] items-center justify-center bg-gradient-to-br from-ocean-dark to-ocean-blue text-white">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=1920&q=80')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ocean-dark/80 via-ocean-blue/60 to-ocean-dark/80" />
+        <div className="relative z-10 px-4 text-center max-w-4xl mx-auto">
+          <h1 className="mb-6 text-6xl font-bold leading-tight drop-shadow-2xl">{t('title')}</h1>
+          <p className="text-2xl font-light leading-relaxed drop-shadow-lg opacity-95">{t('subtitle')}</p>
         </div>
       </div>
 
-      <div className="container relative z-20 -mt-16 mx-auto px-4">
-        <SearchForm />
+      <div className="container relative z-20 -mt-20 mx-auto px-4">
+        <div className="bg-white rounded-3xl shadow-soft-lg p-8">
+          <SearchForm />
+        </div>
       </div>
 
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <div className="container mx-auto px-4 py-20">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {features.map((feature) => (
-            <div key={feature.key} className="text-center">
-              <div className="bg-coral mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+            <div key={feature.key} className="text-center group">
+              <div className="bg-gradient-to-br from-ocean-blue to-ocean-light mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl shadow-soft group-hover:shadow-soft-lg transition-all duration-300 group-hover:scale-110">
                 {feature.icon}
               </div>
-              <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <h3 className="mb-3 text-xl font-bold text-gray-900">{feature.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -126,20 +129,19 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Featured Excursions Section */}
       {featuredExcursions.length > 0 && (
-        <div className="bg-gray-50 py-16">
+        <div className="bg-gradient-to-b from-white to-gray-50 py-20">
           <div className="container mx-auto px-4">
-            <div className="mb-8 flex items-center justify-between">
-              <h2 className="text-3xl font-bold text-gray-900">
+            <div className="mb-12 text-center">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 {locale === 'es' ? 'Excursiones Destacadas' : 'Featured Excursions'}
               </h2>
-              <Link
-                href={`/${locale}/excursions`}
-                className="text-ocean-blue hover:text-ocean-dark transition-colors"
-              >
-                {locale === 'es' ? 'Ver todas →' : 'View all →'}
-              </Link>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                {locale === 'es' 
+                  ? 'Descubre las experiencias más populares seleccionadas especialmente para ti' 
+                  : 'Discover the most popular experiences specially selected for you'}
+              </p>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 mb-10">
               {featuredExcursions.map((excursion) => (
                 <ExcursionCard
                   key={excursion.id}
@@ -147,6 +149,17 @@ export default async function HomePage({ params }: HomePageProps) {
                   locale={locale}
                 />
               ))}
+            </div>
+            <div className="text-center">
+              <Link
+                href={`/${locale}/excursions`}
+                className="inline-flex items-center gap-2 bg-ocean-dark text-white px-8 py-4 rounded-xl font-semibold hover:bg-ocean-blue transition-colors duration-300 shadow-soft hover:shadow-soft-lg"
+              >
+                {locale === 'es' ? 'Ver todas las excursiones' : 'View all excursions'}
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>

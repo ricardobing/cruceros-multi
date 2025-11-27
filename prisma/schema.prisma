@@ -27,6 +27,7 @@ model Excursion {
   id              String       @id @default(cuid())
   title           String
   description     String       @db.Text
+  imageUrl        String?
   destinationId   String
   destination     Destination  @relation(fields: [destinationId], references: [id])
   departures      Departure[]

@@ -5,130 +5,142 @@ const prisma = new PrismaClient();
 async function main() {
   console.info('Starting seed...');
 
+  // Clear existing data
   await prisma.reservation.deleteMany();
   await prisma.departure.deleteMany();
   await prisma.excursion.deleteMany();
   await prisma.destination.deleteMany();
   await prisma.cruiseShip.deleteMany();
 
+  // Create cruise ships (premium lines)
   const ships = await Promise.all([
-    prisma.cruiseShip.create({ data: { name: 'Ocean Explorer' } }),
-    prisma.cruiseShip.create({ data: { name: 'Caribbean Dream' } }),
-    prisma.cruiseShip.create({ data: { name: 'Pacific Voyager' } }),
+    prisma.cruiseShip.create({ data: { name: 'Royal Caribbean - Symphony of the Seas' } }),
+    prisma.cruiseShip.create({ data: { name: 'MSC Meraviglia' } }),
+    prisma.cruiseShip.create({ data: { name: 'Norwegian Epic' } }),
   ]);
+
   console.info(`Created ${ships.length} cruise ships`);
 
+  // Create destinations
   const destinations = await Promise.all([
-    prisma.destination.create({ data: { name: 'Cozumel, Mexico' } }),
-    prisma.destination.create({ data: { name: 'Grand Cayman' } }),
+    prisma.destination.create({ data: { name: 'Cozumel, México' } }),
+    prisma.destination.create({ data: { name: 'Grand Cayman, Islas Caimán' } }),
     prisma.destination.create({ data: { name: 'Nassau, Bahamas' } }),
-    prisma.destination.create({ data: { name: 'St. Thomas' } }),
+    prisma.destination.create({ data: { name: 'St. Thomas, Islas Vírgenes' } }),
   ]);
+
   console.info(`Created ${destinations.length} destinations`);
 
+  // Create authentic excursions with professional Unsplash images
   const excursions = await Promise.all([
+    // Cozumel excursions
     prisma.excursion.create({
       data: {
-        title: 'Snorkeling Paradise',
+        title: 'Snorkeling en el Paraíso de Arrecifes de Cozumel',
         description:
-          'Explore the crystal-clear waters of Cozumel with our guided snorkeling tour. Discover vibrant coral reefs, tropical fish, and maybe even sea turtles! All equipment included.',
+          'Descubre los vibrantes arrecifes de coral del Parque Nacional Chankanaab. Esta excursión de medio día incluye equipo de snorkel profesional, guía certificado, y acceso a playas privadas. Observa peces tropicales, tortugas marinas y mantarrayas en aguas cristalinas. Duración: 4 horas. Nivel: Fácil. Incluye: transporte, equipo, bebidas y snacks.',
+        imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
         destinationId: destinations[0].id,
       },
     }),
     prisma.excursion.create({
       data: {
-        title: 'Mayan Ruins Discovery',
+        title: 'Ruinas Mayas de Tulum y Playa del Carmen',
         description:
-          'Journey back in time with a visit to ancient Mayan ruins. Expert guides will share the fascinating history and culture of this ancient civilization.',
+          'Viaja en el tiempo visitando las impresionantes ruinas mayas de Tulum con vista al Mar Caribe. Tu guía experto te contará la historia de esta antigua ciudad amurallada. Después, disfruta tiempo libre en Playa del Carmen para compras y almuerzo. Duración: 6 horas. Nivel: Moderado. Incluye: transporte, guía certificado, entrada a ruinas.',
+        imageUrl: 'https://images.unsplash.com/photo-1518638150340-f706e86654de?w=800&q=80',
         destinationId: destinations[0].id,
       },
     }),
+
+    // Grand Cayman excursions
     prisma.excursion.create({
       data: {
-        title: 'Stingray City Adventure',
+        title: 'Stingray City - Nado con Rayas en Aguas Cristalinas',
         description:
-          'Get up close and personal with friendly stingrays in their natural habitat. This unforgettable experience includes swimming and feeding these gentle creatures.',
+          'Experimenta el encuentro más famoso de las Islas Caimán nadando con rayas amigables en su hábitat natural. Esta aventura única incluye snorkel en el arrecife de coral cercano. Duración: 3.5 horas. Nivel: Fácil. Apto para todas las edades. Incluye: bote, equipo de snorkel, guía profesional, bebidas.',
+        imageUrl: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80',
         destinationId: destinations[1].id,
       },
     }),
     prisma.excursion.create({
       data: {
-        title: 'Seven Mile Beach Escape',
+        title: 'Seven Mile Beach y Snorkel en Arrecife de Coral',
         description:
-          "Relax on one of the Caribbean's most beautiful beaches. Enjoy crystal-clear waters, soft white sand, and complimentary beach chairs and umbrellas.",
+          'Relájate en una de las playas más hermosas del Caribe. Combina tiempo de playa con snorkel en arrecifes protegidos llenos de vida marina. Duración: 4 horas. Nivel: Fácil. Incluye: transporte, sillas de playa, equipo de snorkel, instructor, refrescos y aperitivos locales.',
+        imageUrl: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
         destinationId: destinations[1].id,
       },
     }),
+
+    // Nassau excursions
     prisma.excursion.create({
       data: {
-        title: 'Atlantis Aquaventure',
+        title: 'Atlantis Aquaventure - Parque Acuático Todo Incluido',
         description:
-          'Experience the world-famous Atlantis resort and water park. Includes access to all water slides, lazy river, beaches, and marine habitats.',
+          'Acceso completo al legendario resort Atlantis Paradise Island. Disfruta toboganes acuáticos de clase mundial, río lento, playas privadas y hábitats marinos con más de 50,000 animales. Duración: 6 horas. Nivel: Fácil. Incluye: entrada general, toallas, casilleros, almuerzo buffet.',
+        imageUrl: 'https://images.unsplash.com/photo-1544198365-f5d60b6d8190?w=800&q=80',
         destinationId: destinations[2].id,
       },
     }),
     prisma.excursion.create({
       data: {
-        title: 'Island Jeep Safari',
+        title: 'Safari Histórico y Playas de Nassau',
         description:
-          "Explore Nassau's hidden gems in an open-air jeep. Visit local beaches, historical sites, and enjoy authentic Bahamian cuisine.",
+          'Recorrido en jeep descapotable explorando la rica historia de Nassau. Visita el Fuerte Charlotte, la Escalera de la Reina, y playas escondidas locales. Incluye degustación de comida bahameña auténtica. Duración: 5 horas. Nivel: Fácil. Incluye: guía local, transporte, entradas, degustaciones culinarias.',
+        imageUrl: 'https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&q=80',
         destinationId: destinations[2].id,
       },
     }),
+
+    // St. Thomas excursions
     prisma.excursion.create({
       data: {
-        title: 'Mountain Top Scenic Tour',
+        title: 'Magens Bay y Teleférico Paradise Point',
         description:
-          'Ascend to the highest point in St. Thomas for breathtaking 360-degree views. Shop for local crafts and enjoy complimentary banana daiquiris.',
+          'Asciende en teleférico a 700 pies sobre el nivel del mar para vistas panorámicas de 360 grados. Después, relájate en Magens Bay, nombrada una de las 10 mejores playas del mundo. Duración: 5 horas. Nivel: Fácil. Incluye: transporte, teleférico, entrada a playa, silla y sombrilla.',
+        imageUrl: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800&q=80',
         destinationId: destinations[3].id,
       },
     }),
     prisma.excursion.create({
       data: {
-        title: 'Coral World Ocean Park',
+        title: 'Coral World Ocean Park y Coki Beach',
         description:
-          'Interactive marine park experience with underwater observatory, sea lion shows, and touch pools. Perfect for families!',
+          'Parque marino interactivo con observatorio submarino, encuentros con leones marinos, piscinas táctiles y exhibiciones de tiburones. Continúa con snorkel en Coki Beach, conocida por su diversa vida marina. Duración: 4.5 horas. Nivel: Fácil. Incluye: entrada al parque, todas las exhibiciones, equipo de snorkel.',
+        imageUrl: 'https://images.unsplash.com/photo-1583212292454-1fe6229603b7?w=800&q=80',
         destinationId: destinations[3].id,
       },
     }),
   ]);
+
   console.info(`Created ${excursions.length} excursions`);
 
+  // Create departures for next 3 months
   let departureCount = 0;
   const today = new Date();
 
   for (const [index, excursion] of excursions.entries()) {
-    for (let week = 0; week < 4; week++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + 7 + week * 7 + index);
+    const shipIndex = index % ships.length;
+    const daysToAdd = [7, 14, 21, 28]; // Weekly departures for a month
 
-      const ship = ships[(index + week) % ships.length];
-      const currentParticipants = (() => {
-        if (week === 0) return 3;
-        if (week === 1) return 5;
-        if (week === 2) return 12;
-        return 20;
-      })();
-      const status =
-        currentParticipants >= 20
-          ? 'full'
-          : currentParticipants >= 4
-          ? 'confirmed'
-          : 'pending';
+    for (const days of daysToAdd) {
+      const departureDate = new Date(today);
+      departureDate.setDate(today.getDate() + days);
 
       await prisma.departure.create({
         data: {
           excursionId: excursion.id,
-          cruiseShipId: ship.id,
-          date,
+          date: departureDate,
+          cruiseShipId: ships[shipIndex].id,
           minParticipants: 4,
           maxParticipants: 20,
-          currentParticipants,
-          status,
+          currentParticipants: Math.floor(Math.random() * 8), // 0-7 participants
+          status: Math.random() > 0.5 ? 'confirmed' : 'pending',
         },
       });
 
-      departureCount += 1;
+      departureCount++;
     }
   }
 
@@ -137,8 +149,8 @@ async function main() {
 }
 
 main()
-  .catch((error) => {
-    console.error('Seed error:', error);
+  .catch((e) => {
+    console.error('Error during seed:', e);
     process.exit(1);
   })
   .finally(async () => {

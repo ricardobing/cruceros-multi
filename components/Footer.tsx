@@ -10,56 +10,52 @@ export default function Footer() {
   const locale = (params.locale as string) || 'en';
 
   return (
-    <footer className="bg-ocean-dark text-white">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-gradient-to-br from-ocean-dark via-ocean-blue to-ocean-dark text-white">
+      <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand Section */}
           <div>
-            <div className="mb-4 flex items-center gap-2">
-              <svg
-                className="h-8 w-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                />
-              </svg>
-              <span className="text-xl font-bold">{t('brand')}</span>
+            <div className="mb-4 flex items-center gap-3">
+              <div className="bg-white/10 backdrop-blur-sm p-2 rounded-xl">
+                <svg
+                  className="h-7 w-7 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                </svg>
+              </div>
+              <span className="text-2xl font-bold">{t('brand')}</span>
             </div>
-            <p className="text-gray-300">{t('description')}</p>
+            <p className="text-white/80 leading-relaxed">{t('description')}</p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold">{t('quickLinks')}</h3>
-            <ul className="space-y-2">
+            <h3 className="mb-6 text-lg font-bold text-white">{t('quickLinks')}</h3>
+            <ul className="space-y-3">
               <li>
                 <Link
                   href={`/${locale}`}
-                  className="text-gray-300 transition-colors hover:text-coral"
+                  className="text-white/80 hover:text-white transition-all hover:translate-x-1 inline-block"
                 >
-                  {t('home')}
+                  → {t('home')}
                 </Link>
               </li>
               <li>
                 <Link
                   href={`/${locale}/excursions`}
-                  className="text-gray-300 transition-colors hover:text-coral"
+                  className="text-white/80 hover:text-white transition-all hover:translate-x-1 inline-block"
                 >
-                  {t('excursions')}
+                  → {t('excursions')}
                 </Link>
               </li>
               <li>
                 <Link
                   href={`/${locale}`}
-                  className="text-gray-300 transition-colors hover:text-coral"
+                  className="text-white/80 hover:text-white transition-all hover:translate-x-1 inline-block"
                 >
-                  {t('about')}
+                  → {t('about')}
                 </Link>
               </li>
             </ul>
@@ -67,12 +63,12 @@ export default function Footer() {
 
           {/* Destinations */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold">{t('destinations')}</h3>
-            <ul className="space-y-2 text-gray-300">
-              <li>Cozumel, México</li>
-              <li>Nassau, Bahamas</li>
-              <li>Grand Cayman</li>
-              <li>St. Thomas</li>
+            <h3 className="mb-6 text-lg font-bold text-white">{t('destinations')}</h3>
+            <ul className="space-y-3 text-white/80">
+              <li className="hover:text-white transition-colors">🏝️ Cozumel, México</li>
+              <li className="hover:text-white transition-colors">🌴 Nassau, Bahamas</li>
+              <li className="hover:text-white transition-colors">🐠 Grand Cayman</li>
+              <li className="hover:text-white transition-colors">⛵ St. Thomas</li>
             </ul>
           </div>
 
@@ -147,8 +143,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-t border-gray-700 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} {t('brand')}. {t('rights')}</p>
+        <div className="mt-12 border-t border-white/20 pt-8 text-center text-white/70">
+          <p className="text-sm">&copy; {new Date().getFullYear()} {t('brand')}. {t('rights')}</p>
         </div>
       </div>
     </footer>
