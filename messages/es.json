@@ -1,0 +1,67 @@
+{
+  "home": {
+    "title": "Descubre Increíbles Excursiones de Crucero",
+    "subtitle": "Reserva experiencias inolvidables en cada destino",
+    "search": {
+      "ship": "Barco Crucero",
+      "destination": "Destino",
+      "date": "Fecha",
+      "button": "Buscar Excursiones",
+      "allShips": "Todos los Barcos",
+      "allDestinations": "Todos los Destinos"
+    }
+  },
+  "excursions": {
+    "title": "Excursiones Disponibles",
+    "noResults": "No se encontraron excursiones",
+    "participants": "participantes",
+    "minRequired": "Mín. requeridos",
+    "spotsLeft": "lugares disponibles",
+    "confirmed": "Confirmada",
+    "pending": "Pendiente de confirmación",
+    "viewDetails": "Ver Detalles"
+  },
+  "detail": {
+    "backToList": "Volver a Excursiones",
+    "description": "Descripción",
+    "availableDates": "Fechas Disponibles",
+    "participants": "participantes",
+    "spotsLeft": "lugares disponibles",
+    "confirmed": "Confirmada",
+    "pending": "Pendiente",
+    "full": "Completa",
+    "prereserve": "Pre-Reservar",
+    "reserveForm": {
+      "title": "Completa tu reserva",
+      "name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "submit": "Confirmar Reserva",
+      "submitting": "Procesando..."
+    }
+  },
+  "thankyou": {
+    "title": "¡Gracias!",
+    "subtitle": "Tu reserva ha sido recibida",
+    "pending": {
+      "title": "Pendiente de Confirmación",
+      "description": "Tu reserva está pendiente. Te enviaremos un correo de confirmación una vez alcancemos el número mínimo de participantes."
+    },
+    "confirmed": {
+      "title": "¡Confirmada!",
+      "description": "¡Excelentes noticias! Tu excursión está confirmada. Recibirás un correo de confirmación en breve con todos los detalles."
+    },
+    "reservationDetails": "Detalles de la Reserva",
+    "excursion": "Excursión",
+    "date": "Fecha",
+    "status": "Estado",
+    "backHome": "Volver al Inicio"
+  },
+  "nav": {
+    "home": "Inicio",
+    "language": "Idioma"
+  },
+  "status": {
+    "pending": "Pendiente",
+    "confirmed": "Confirmada"
+  }
+}

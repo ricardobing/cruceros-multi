@@ -1,0 +1,67 @@
+{
+  "home": {
+    "title": "Discover Amazing Cruise Excursions",
+    "subtitle": "Book unforgettable experiences at every destination",
+    "search": {
+      "ship": "Cruise Ship",
+      "destination": "Destination",
+      "date": "Date",
+      "button": "Search Excursions",
+      "allShips": "All Ships",
+      "allDestinations": "All Destinations"
+    }
+  },
+  "excursions": {
+    "title": "Available Excursions",
+    "noResults": "No excursions found",
+    "participants": "participants",
+    "minRequired": "Min. required",
+    "spotsLeft": "spots left",
+    "confirmed": "Confirmed",
+    "pending": "Pending confirmation",
+    "viewDetails": "View Details"
+  },
+  "detail": {
+    "backToList": "Back to Excursions",
+    "description": "Description",
+    "availableDates": "Available Dates",
+    "participants": "participants",
+    "spotsLeft": "spots left",
+    "confirmed": "Confirmed",
+    "pending": "Pending",
+    "full": "Full",
+    "prereserve": "Pre-Reserve",
+    "reserveForm": {
+      "title": "Complete your reservation",
+      "name": "Full Name",
+      "email": "Email",
+      "submit": "Confirm Reservation",
+      "submitting": "Processing..."
+    }
+  },
+  "thankyou": {
+    "title": "Thank You!",
+    "subtitle": "Your reservation has been received",
+    "pending": {
+      "title": "Pending Confirmation",
+      "description": "Your reservation is pending. We'll send you a confirmation email once we reach the minimum number of participants."
+    },
+    "confirmed": {
+      "title": "Confirmed!",
+      "description": "Great news! Your excursion is confirmed. You'll receive a confirmation email shortly with all the details."
+    },
+    "reservationDetails": "Reservation Details",
+    "excursion": "Excursion",
+    "date": "Date",
+    "status": "Status",
+    "backHome": "Back to Home"
+  },
+  "nav": {
+    "home": "Home",
+    "language": "Language"
+  },
+  "status": {
+    "pending": "Pending",
+    "confirmed": "Confirmed"
+  }
+}

@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CruiseShip {
+  id          String      @id @default(cuid())
+  name        String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Destination {
+  id          String      @id @default(cuid())
+  name        String
+  excursions  Excursion[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Excursion {
+  id              String       @id @default(cuid())
+  title           String
+  description     String       @db.Text
+  destinationId   String
+  destination     Destination  @relation(fields: [destinationId], references: [id])
+  departures      Departure[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+model Departure {
+  id                  String        @id @default(cuid())
+  excursionId         String
+  excursion           Excursion     @relation(fields: [excursionId], references: [id])
+  date                DateTime
+  minParticipants     Int
+  maxParticipants     Int
+  currentParticipants Int           @default(0)
+  status              String        @default("pending") // pending, confirmed, full
+  reservations        Reservation[]
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+}
+
+model Reservation {
+  id          String    @id @default(cuid())
+  departureId String
+  departure   Departure @relation(fields: [departureId], references: [id])
+  userName    String
+  userEmail   String
+  status      String    @default("pending") // pending, confirmed
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
