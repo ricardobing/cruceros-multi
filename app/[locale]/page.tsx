@@ -1,5 +1,8 @@
 import SearchForm from '@/components/SearchForm';
+import ExcursionCard from '@/components/ExcursionCard';
 import { getTranslations } from 'next-intl/server';
+import { prisma } from '@/lib/prisma';
+import Link from 'next/link';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -8,6 +11,27 @@ interface HomePageProps {
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
+
+  // Fetch featured excursions (first 6)
+  const featuredExcursions = await prisma.excursion.findMany({
+    take: 6,
+    include: {
+      destination: true,
+      departures: {
+        where: {
+          date: {
+            gte: new Date(),
+          },
+        },
+        orderBy: {
+          date: 'asc',
+        },
+        include: {
+          cruiseShip: true,
+        },
+      },
+    },
+  });
 
   const features = [
     {
@@ -99,6 +123,34 @@ export default async function HomePage({ params }: HomePageProps) {
           ))}
         </div>
       </div>
+
+      {/* Featured Excursions Section */}
+      {featuredExcursions.length > 0 && (
+        <div className="bg-gray-50 py-16">
+          <div className="container mx-auto px-4">
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="text-3xl font-bold text-gray-900">
+                {locale === 'es' ? 'Excursiones Destacadas' : 'Featured Excursions'}
+              </h2>
+              <Link
+                href={`/${locale}/excursions`}
+                className="text-ocean-blue hover:text-ocean-dark transition-colors"
+              >
+                {locale === 'es' ? 'Ver todas →' : 'View all →'}
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {featuredExcursions.map((excursion) => (
+                <ExcursionCard
+                  key={excursion.id}
+                  excursion={excursion}
+                  locale={locale}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
