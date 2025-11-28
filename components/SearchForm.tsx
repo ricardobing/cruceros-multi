@@ -18,13 +18,17 @@ export default function SearchForm() {
   });
 
   useEffect(() => {
-    // Fetch ships and destinations
+    // Fetch ships and destinations with error handling
     Promise.all([
-      fetch('/api/ships').then((r) => r.json()),
-      fetch('/api/destinations').then((r) => r.json()),
+      fetch('/api/ships').then((r) => r.json()).catch(() => []),
+      fetch('/api/destinations').then((r) => r.json()).catch(() => []),
     ]).then(([shipsData, destinationsData]) => {
-      setShips(shipsData);
-      setDestinations(destinationsData);
+      setShips(Array.isArray(shipsData) ? shipsData : []);
+      setDestinations(Array.isArray(destinationsData) ? destinationsData : []);
+    }).catch((error) => {
+      console.error('Failed to fetch data:', error);
+      setShips([]);
+      setDestinations([]);
     });
   }, []);
 
