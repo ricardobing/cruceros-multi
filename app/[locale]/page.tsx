@@ -2,6 +2,7 @@ import SearchForm from '@/components/SearchForm';
 import ExcursionCard from '@/components/ExcursionCard';
 import { getTranslations } from 'next-intl/server';
 import { prisma } from '@/lib/prisma';
+import { mockExcursions } from '@/lib/mockData';
 import Link from 'next/link';
 
 interface HomePageProps {
@@ -34,10 +35,14 @@ export default async function HomePage({ params }: HomePageProps) {
         },
       },
     });
+    // If database is empty, use mock data
+    if (featuredExcursions.length === 0) {
+      featuredExcursions = mockExcursions.slice(0, 6);
+    }
   } catch (error) {
     console.error('Failed to fetch excursions:', error);
-    // Return empty array if database fails
-    featuredExcursions = [];
+    // Use mock data if database fails
+    featuredExcursions = mockExcursions.slice(0, 6);
   }
 
   const features = [

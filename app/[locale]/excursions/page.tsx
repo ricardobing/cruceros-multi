@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl';
 import { prisma } from '@/lib/prisma';
+import { mockExcursions } from '@/lib/mockData';
 import ExcursionCard from '@/components/ExcursionCard';
 import Link from 'next/link';
 
@@ -51,9 +52,22 @@ export default async function ExcursionsPage({
         },
       },
     });
+    // If database is empty, use mock data
+    if (excursions.length === 0) {
+      excursions = mockExcursions;
+      // Apply filters to mock data
+      if (destination) {
+        excursions = excursions.filter(e => e.destinationId === destination);
+      }
+    }
   } catch (error) {
     console.error('Failed to fetch excursions:', error);
-    excursions = [];
+    // Use mock data if database fails
+    excursions = mockExcursions;
+    // Apply filters to mock data
+    if (destination) {
+      excursions = excursions.filter(e => e.destinationId === destination);
+    }
   }
 
   // Filter excursions that have departures

@@ -18,17 +18,34 @@ export default function SearchForm() {
   });
 
   useEffect(() => {
+    // Mock data as fallback
+    const mockShips = [
+      { id: '1', name: 'Ocean Majesty', capacity: 3000 },
+      { id: '2', name: 'Caribbean Dream', capacity: 2500 },
+      { id: '3', name: 'Sea Explorer', capacity: 2800 },
+    ];
+    
+    const mockDestinations = [
+      { id: '1', name: 'Caribbean', country: 'Multiple' },
+      { id: '2', name: 'Mediterranean', country: 'Multiple' },
+      { id: '3', name: 'Alaska', country: 'USA' },
+      { id: '4', name: 'Northern Europe', country: 'Multiple' },
+    ];
+
     // Fetch ships and destinations with error handling
     Promise.all([
       fetch('/api/ships').then((r) => r.json()).catch(() => []),
       fetch('/api/destinations').then((r) => r.json()).catch(() => []),
     ]).then(([shipsData, destinationsData]) => {
-      setShips(Array.isArray(shipsData) ? shipsData : []);
-      setDestinations(Array.isArray(destinationsData) ? destinationsData : []);
+      const ships = Array.isArray(shipsData) && shipsData.length > 0 ? shipsData : mockShips;
+      const destinations = Array.isArray(destinationsData) && destinationsData.length > 0 ? destinationsData : mockDestinations;
+      setShips(ships);
+      setDestinations(destinations);
     }).catch((error) => {
       console.error('Failed to fetch data:', error);
-      setShips([]);
-      setDestinations([]);
+      // Use mock data if API fails
+      setShips(mockShips);
+      setDestinations(mockDestinations);
     });
   }, []);
 
