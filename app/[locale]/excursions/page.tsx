@@ -26,29 +26,35 @@ export default async function ExcursionsPage({
     where.destinationId = destination;
   }
 
-  // Fetch excursions with their departures
-  const excursions = await prisma.excursion.findMany({
-    where,
-    include: {
-      destination: true,
-      departures: {
-        where: date
-          ? {
-              date: {
-                gte: new Date(date),
-                lt: new Date(new Date(date).getTime() + 24 * 60 * 60 * 1000),
-              },
-            }
-          : {},
-        orderBy: {
-          date: 'asc',
-        },
-        include: {
-          cruiseShip: true,
+  // Fetch excursions with their departures with error handling
+  let excursions: any[] = [];
+  try {
+    excursions = await prisma.excursion.findMany({
+      where,
+      include: {
+        destination: true,
+        departures: {
+          where: date
+            ? {
+                date: {
+                  gte: new Date(date),
+                  lt: new Date(new Date(date).getTime() + 24 * 60 * 60 * 1000),
+                },
+              }
+            : {},
+          orderBy: {
+            date: 'asc',
+          },
+          include: {
+            cruiseShip: true,
+          },
         },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.error('Failed to fetch excursions:', error);
+    excursions = [];
+  }
 
   // Filter excursions that have departures
   const filteredExcursions = excursions.filter(

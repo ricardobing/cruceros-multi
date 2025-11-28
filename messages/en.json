@@ -79,11 +79,14 @@
                      "status":  "Status",
                      "backHome":  "Back to Home"
                  },
-    "nav":  {
-                "home":  "Home",
-                "language":  "Language",
-                "brand":  "Cruise Excursions"
-            },
+      "nav": {
+    "home": "Home",
+    "excursions": "Excursions",
+    "destinations": "Destinations",
+    "contact": "Contact",
+    "language": "Language",
+    "brand": "Cruise Excursions"
+  },
     "status":  {
                    "pending":  "Pending",
                    "confirmed":  "Confirmed"
@@ -100,3 +103,4 @@
                    "rights":  "All rights reserved"
                }
 }
+

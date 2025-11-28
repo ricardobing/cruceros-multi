@@ -54,6 +54,27 @@ export default function Navigation() {
               {t('home')}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ocean-blue group-hover:w-full transition-all duration-300"></span>
             </Link>
+            <Link
+              href={`/${locale}/excursions`}
+              className="text-gray-700 font-medium transition-colors hover:text-ocean-blue relative group"
+            >
+              {t('excursions')}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ocean-blue group-hover:w-full transition-all duration-300"></span>
+            </Link>
+            <a
+              href="#destinos"
+              className="text-gray-700 font-medium transition-colors hover:text-ocean-blue relative group"
+            >
+              {t('destinations')}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ocean-blue group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a
+              href="#contacto"
+              className="text-gray-700 font-medium transition-colors hover:text-ocean-blue relative group"
+            >
+              {t('contact')}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-ocean-blue group-hover:w-full transition-all duration-300"></span>
+            </a>
 
             <div className="flex gap-2 bg-gray-100 rounded-xl p-1" aria-label={t('language')}>
               {languageOptions.map((option) => (

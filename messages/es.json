@@ -79,10 +79,13 @@
     "status": "Estado",
     "backHome": "Volver al inicio"
   },
-  "nav": {
+    "nav": {
     "home": "Inicio",
+    "excursions": "Excursiones",
+    "destinations": "Destinos",
+    "contact": "Contacto",
     "language": "Idioma",
-    "brand": "Excursiones de crucero"
+    "brand": "Excursiones de Crucero"
   },
   "status": {
     "pending": "Pendiente",
@@ -100,3 +103,4 @@
     "rights": "Todos los derechos reservados"
   }
 }
+
