@@ -13,7 +13,7 @@ export default async function HomePage({ params }: HomePageProps) {
   const t = await getTranslations({ locale, namespace: 'home' });
 
   // Fetch featured excursions (first 6) with error handling
-  let featuredExcursions = [];
+  let featuredExcursions: any[] = [];
   try {
     featuredExcursions = await prisma.excursion.findMany({
       take: 6,
