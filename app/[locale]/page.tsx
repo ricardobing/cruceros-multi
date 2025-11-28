@@ -12,26 +12,33 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
 
-  // Fetch featured excursions (first 6)
-  const featuredExcursions = await prisma.excursion.findMany({
-    take: 6,
-    include: {
-      destination: true,
-      departures: {
-        where: {
-          date: {
-            gte: new Date(),
+  // Fetch featured excursions (first 6) with error handling
+  let featuredExcursions = [];
+  try {
+    featuredExcursions = await prisma.excursion.findMany({
+      take: 6,
+      include: {
+        destination: true,
+        departures: {
+          where: {
+            date: {
+              gte: new Date(),
+            },
+          },
+          orderBy: {
+            date: 'asc',
+          },
+          include: {
+            cruiseShip: true,
           },
         },
-        orderBy: {
-          date: 'asc',
-        },
-        include: {
-          cruiseShip: true,
-        },
       },
-    },
-  });
+    });
+  } catch (error) {
+    console.error('Failed to fetch excursions:', error);
+    // Return empty array if database fails
+    featuredExcursions = [];
+  }
 
   const features = [
     {
