@@ -69,8 +69,10 @@
     "brand": "Cruceros Multi",
     "home": "Inicio",
     "excursions": "Excursiones",
+    "destinations": "Destinos",
     "about": "Nosotros",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "language": "Idioma"
   },
   "footer": {
     "rights": "Todos los derechos reservados",
