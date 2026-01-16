@@ -1,106 +1,88 @@
-﻿{
-    "home":  {
-                 "title":  "Discover Amazing Cruise Excursions",
-                 "subtitle":  "Book unforgettable experiences at every destination",
-                 "features":  {
-                                  "easySearch":  {
-                                                     "title":  "Easy Search",
-                                                     "description":  "Find the perfect excursion for any ship or destination."
-                                                 },
-                                  "flexibleBooking":  {
-                                                          "title":  "Flexible Booking",
-                                                          "description":  "Reserve your spot now and confirm automatically when ready."
-                                                      },
-                                  "verifiedTours":  {
-                                                        "title":  "Verified Tours",
-                                                        "description":  "Every tour is vetted for safety, reliability, and quality."
-                                                    }
-                              },
-                 "search":  {
-                                "ship":  "Cruise Ship",
-                                "destination":  "Destination",
-                                "date":  "Date",
-                                "button":  "Search Excursions",
-                                "allShips":  "All Ships",
-                                "allDestinations":  "All Destinations"
-                            }
-             },
-    "excursions":  {
-                       "title":  "Available Excursions",
-                       "backLink":  "Back to search",
-                       "noResults":  "No excursions found for your filters.",
-                       "participants":  "participants",
-                       "minRequired":  "Min. required",
-                       "spotsLeft":  "spots left",
-                       "confirmed":  "Confirmed",
-                       "pending":  "Pending confirmation",
-                       "viewDetails":  "View Details",
-                       "shipLabel":  "Ship",
-                       "shipFallback":  "To be assigned"
-                   },
-    "detail":  {
-                   "backToList":  "Back to Excursions",
-                   "description":  "Description",
-                   "availableDates":  "Available Dates",
-                   "participants":  "participants",
-                   "spotsLeft":  "spots left",
-                   "confirmed":  "Confirmed",
-                   "pending":  "Pending",
-                   "full":  "Full",
-                   "noDates":  "No upcoming dates available",
-                   "shipLabel":  "Ship",
-                   "shipFallback":  "To be assigned",
-                   "reserveForm":  {
-                                       "title":  "Complete your reservation",
-                                       "name":  "Full Name",
-                                       "email":  "Email",
-                                       "submit":  "Confirm Reservation",
-                                       "submitting":  "Processing...",
-                                       "selectDeparture":  "Please select a departure date",
-                                       "error":  "We couldn\u0027t create the reservation. Please try again."
-                                   }
-               },
-    "thankyou":  {
-                     "title":  "Thank You!",
-                     "subtitle":  "Your reservation has been received",
-                     "pending":  {
-                                     "title":  "Pending Confirmation",
-                                     "description":  "Your reservation is pending. We\u0027ll send you a confirmation email once we reach the minimum number of participants."
-                                 },
-                     "confirmed":  {
-                                       "title":  "Confirmed!",
-                                       "description":  "Great news! Your excursion is confirmed. You\u0027ll receive a confirmation email shortly with all the details."
-                                   },
-                     "reservationDetails":  "Reservation Details",
-                     "excursion":  "Excursion",
-                     "date":  "Date",
-                     "ship":  "Ship",
-                     "shipFallback":  "To be assigned",
-                     "status":  "Status",
-                     "backHome":  "Back to Home"
-                 },
-      "nav": {
+{
+  "home": {
+    "title": "Discover Amazing Cruise Excursions",
+    "subtitle": "Book unforgettable experiences at every destination",
+    "features": {
+      "easySearch": {
+        "title": "Easy Search",
+        "description": "Find the perfect excursion for any ship or destination."
+      },
+      "flexibleBooking": {
+        "title": "Flexible Booking",
+        "description": "Reserve your spot now and confirm automatically when ready."
+      },
+      "verifiedTours": {
+        "title": "Verified Tours",
+        "description": "Every tour is vetted for safety, reliability, and quality."
+      }
+    },
+    "search": {
+      "ship": "Cruise Ship",
+      "destination": "Destination",
+      "date": "Date",
+      "button": "Search Excursions",
+      "allShips": "All Ships",
+      "allDestinations": "All Destinations"
+    }
+  },
+  "excursions": {
+    "title": "Available Excursions",
+    "backLink": "Back to search",
+    "noResults": "No excursions found for your filters.",
+    "participants": "participants",
+    "minRequired": "Min. required",
+    "spotsLeft": "spots left",
+    "confirmed": "Confirmed",
+    "pending": "Pending confirmation",
+    "viewDetails": "View Details",
+    "shipLabel": "Ship",
+    "shipFallback": "To be assigned"
+  },
+  "detail": {
+    "backToList": "Back to Excursions",
+    "description": "Description",
+    "availableDates": "Available Dates",
+    "participants": "participants",
+    "spotsLeft": "spots left",
+    "confirmed": "Confirmed",
+    "pending": "Pending",
+    "full": "Full",
+    "noDates": "No upcoming dates available",
+    "bookNow": "Book Now"
+  },
+  "booking": {
+    "title": "Complete Your Reservation",
+    "name": "Full Name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "notes": "Special Requests",
+    "submit": "Confirm Reservation",
+    "cancel": "Cancel"
+  },
+  "thankYou": {
+    "title": "Reservation Confirmed!",
+    "message": "Thank you for your reservation. You will receive a confirmation email shortly.",
+    "backHome": "Back to Home",
+    "viewExcursions": "View More Excursions"
+  },
+  "nav": {
+    "brand": "Cruceros Multi",
     "home": "Home",
     "excursions": "Excursions",
-    "destinations": "Destinations",
-    "contact": "Contact",
-    "language": "Language",
-    "brand": "Cruise Excursions"
+    "about": "About",
+    "contact": "Contact"
   },
-    "status":  {
-                   "pending":  "Pending",
-                   "confirmed":  "Confirmed"
-               },
-    "footer":  {
-                   "about":  "About",
-                   "description":  "Discover amazing experiences at every destination",
-                   "home":  "Home",
-                   "destinations":  "Destinations",
-                   "excursions":  "Excursions",
-                   "contact":  "Contact",
-                   "brand":  "Cruise Excursions",
-                   "quickLinks":  "Quick Links",
-                   "rights":  "All rights reserved"
-               }
+  "footer": {
+    "rights": "All rights reserved",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact Us"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    }
+  }
 }
-

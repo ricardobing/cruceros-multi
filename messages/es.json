@@ -1,4 +1,4 @@
-﻿{
+{
   "home": {
     "title": "Descubrí increíbles excursiones de crucero",
     "subtitle": "Reservá experiencias inolvidables en cada destino",
@@ -48,59 +48,41 @@
     "pending": "Pendiente",
     "full": "Completa",
     "noDates": "No hay fechas próximas disponibles",
-    "shipLabel": "Barco",
-    "shipFallback": "A asignar",
-    "reserveForm": {
-      "title": "Completá tu reserva",
-      "name": "Nombre completo",
-      "email": "Correo electrónico",
-      "submit": "Confirmar reserva",
-      "submitting": "Procesando...",
-      "selectDeparture": "Seleccioná una fecha antes de continuar",
-      "error": "No pudimos crear la reserva. Intentalo nuevamente."
-    }
+    "bookNow": "Reservar ahora"
   },
-  "thankyou": {
-    "title": "¡Gracias!",
-    "subtitle": "Recibimos tu reserva correctamente",
-    "pending": {
-      "title": "Pendiente de confirmación",
-      "description": "Tu reserva está pendiente. Te avisaremos por correo cuando alcancemos el mínimo de participantes."
-    },
-    "confirmed": {
-      "title": "¡Confirmada!",
-      "description": "¡Excelente! Tu excursión está confirmada. Te enviaremos los detalles por correo en breve."
-    },
-    "reservationDetails": "Detalles de la reserva",
-    "excursion": "Excursión",
-    "date": "Fecha",
-    "ship": "Barco",
-    "shipFallback": "A confirmar",
-    "status": "Estado",
-    "backHome": "Volver al inicio"
+  "booking": {
+    "title": "Completá tu reserva",
+    "name": "Nombre completo",
+    "email": "Email",
+    "phone": "Teléfono (opcional)",
+    "notes": "Pedidos especiales",
+    "submit": "Confirmar reserva",
+    "cancel": "Cancelar"
   },
-    "nav": {
+  "thankYou": {
+    "title": "¡Reserva confirmada!",
+    "message": "Gracias por tu reserva. Recibirás un email de confirmación pronto.",
+    "backHome": "Volver al inicio",
+    "viewExcursions": "Ver más excursiones"
+  },
+  "nav": {
+    "brand": "Cruceros Multi",
     "home": "Inicio",
     "excursions": "Excursiones",
-    "destinations": "Destinos",
-    "contact": "Contacto",
-    "language": "Idioma",
-    "brand": "Excursiones de Crucero"
-  },
-  "status": {
-    "pending": "Pendiente",
-    "confirmed": "Confirmada"
+    "about": "Nosotros",
+    "contact": "Contacto"
   },
   "footer": {
-    "brand": "Excursiones de crucero",
-    "description": "Descubrí increíbles experiencias en cada destino",
-    "quickLinks": "Enlaces rápidos",
-    "home": "Inicio",
-    "excursions": "Excursiones",
-    "about": "Acerca de",
-    "destinations": "Destinos",
-    "contact": "Contacto",
-    "rights": "Todos los derechos reservados"
+    "rights": "Todos los derechos reservados",
+    "links": {
+      "privacy": "Política de privacidad",
+      "terms": "Términos de servicio",
+      "contact": "Contactános"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter"
+    }
   }
 }
-
