@@ -1,5 +1,5 @@
-import { useTranslations } from 'next-intl';
-import { prisma } from '@/lib/prisma';
+import { getTranslations } from 'next-intl/server';
+import { mockExcursions } from '@/lib/mockData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import DeparturesList from '@/components/DeparturesList';
@@ -10,26 +10,15 @@ export default async function ExcursionDetailPage({
   params: Promise<{ locale: string; id: string }>;
 }) {
   const { locale, id } = await params;
+  const t = await getTranslations({ locale, namespace: 'detail' });
 
-  const excursion = await prisma.excursion.findUnique({
-    where: { id },
-    include: {
-      destination: true,
-      departures: {
-        where: {
-          date: { gte: new Date() },
-          status: { not: 'full' },
-        },
-        orderBy: { date: 'asc' },
-      },
-    },
-  });
+  // Using mock data for demo purposes
+  // Backend integration paused - ready for future connection
+  const excursion = mockExcursions.find(exc => exc.id === id);
 
   if (!excursion) {
     notFound();
   }
-
-  const t = useTranslations('detail');
 
   return (
     <div className="container mx-auto px-4 py-8">

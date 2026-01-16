@@ -1,5 +1,4 @@
-import { useTranslations } from 'next-intl';
-import { prisma } from '@/lib/prisma';
+import { getTranslations } from 'next-intl/server';
 import { mockExcursions } from '@/lib/mockData';
 import ExcursionCard from '@/components/ExcursionCard';
 import Link from 'next/link';
@@ -19,63 +18,21 @@ export default async function ExcursionsPage({
 }) {
   const { locale } = await params;
   const { destination, date } = await searchParams;
+  const t = await getTranslations({ locale, namespace: 'excursions' });
 
-  // Build query
-  const where: any = {};
+  // Using mock data for demo purposes
+  // Backend integration paused - ready for future connection
+  let excursions = mockExcursions;
 
+  // Apply filters to mock data
   if (destination) {
-    where.destinationId = destination;
-  }
-
-  // Fetch excursions with their departures with error handling
-  let excursions: any[] = [];
-  try {
-    excursions = await prisma.excursion.findMany({
-      where,
-      include: {
-        destination: true,
-        departures: {
-          where: date
-            ? {
-                date: {
-                  gte: new Date(date),
-                  lt: new Date(new Date(date).getTime() + 24 * 60 * 60 * 1000),
-                },
-              }
-            : {},
-          orderBy: {
-            date: 'asc',
-          },
-          include: {
-            cruiseShip: true,
-          },
-        },
-      },
-    });
-    // If database is empty, use mock data
-    if (excursions.length === 0) {
-      excursions = mockExcursions;
-      // Apply filters to mock data
-      if (destination) {
-        excursions = excursions.filter(e => e.destinationId === destination);
-      }
-    }
-  } catch (error) {
-    console.error('Failed to fetch excursions:', error);
-    // Use mock data if database fails
-    excursions = mockExcursions;
-    // Apply filters to mock data
-    if (destination) {
-      excursions = excursions.filter(e => e.destinationId === destination);
-    }
+    excursions = excursions.filter(e => e.destinationId === destination);
   }
 
   // Filter excursions that have departures
   const filteredExcursions = excursions.filter(
-    (exc) => exc.departures.length > 0
+    (exc) => exc.departures && exc.departures.length > 0
   );
-
-  const t = useTranslations('excursions');
 
   return (
     <div className="container mx-auto px-4 py-8">
